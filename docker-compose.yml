@@ -1,6 +1,6 @@
 version: '2'
 services:
-  garagem:
+  bellacia:
     build: .
     image: bellacia
     expose:

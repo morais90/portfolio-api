@@ -1,16 +1,17 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 
 
 class Service(models.Model):
-    name = models.CharField()
+    name = models.CharField(max_length=50)
 
 
 class Hooker(models.Model):
-    name = modes.CharField(max_length=50)
+    name = models.CharField(max_length=50)
     age = models.IntegerField()
-    height = models.FloatField(decimal_places=2)
-    weight = models.FloatField(decimal_places=2)
-    services = models.ManyToMany(Service)
+    height = models.FloatField()
+    weight = models.FloatField()
+    services = models.ManyToManyField(Service)
 
 
 class Contact(models.Model):

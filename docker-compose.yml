@@ -1,8 +1,8 @@
 version: '2'
 services:
-  bellacia:
+  bellacia-api:
     build: .
-    image: bellacia
+    image: bellacia-api
     expose:
       - "8000"
     ports:

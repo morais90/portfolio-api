@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls import url
-from bellacia.dashboard import views
+from django.conf.urls import url, include
 
 
 urlpatterns = [
-    url(r'^dashboard/$', views.index),
+    url(r'^authentications/', include('bellacia.authentication.urls'))
 ]

@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from django.urls import reverse
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, Group
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, Group, Permission
 
 from .managers import UserManager
 
 
-__all__ = ['User', 'Group']
+__all__ = ['User', 'Group', 'Permission']
 
 
 class User(AbstractBaseUser, PermissionsMixin):

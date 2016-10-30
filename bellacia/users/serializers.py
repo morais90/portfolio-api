@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User
+from .models import User, Group, Permission
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -26,5 +26,43 @@ class UserSerializer(serializers.ModelSerializer):
             },
             'password': {
                 'write_only': True
+            },
+            'groups': {
+                'write_only': True,
+                'many': True,
+                'allow_null': True
+            }
+        }
+
+
+class GroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Group
+        fields = ('id', 'name')
+        extra_kwargs = {
+            'id': {
+                'read_only': True
+            },
+            'permissions': {
+                'write_only': True,
+                'many': True,
+                'allow_null': True
+            }
+        }
+
+
+class PermissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Permission
+        fields = ('id', 'name', 'codename')
+        extra_kwargs = {
+            'id': {
+                'read_only': True
+            },
+            'name': {
+                'read_only': True
+            },
+            'codename': {
+                'read_only': True
             }
         }

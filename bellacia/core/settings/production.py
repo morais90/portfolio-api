@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'bellacia.authentication',
-    'bellacia.customer',
+    'bellacia.users',
     'bellacia.essay',
     'bellacia.hooker'
 ]
@@ -78,7 +78,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'authentication.User'
+AUTH_USER_MODEL = 'users.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/

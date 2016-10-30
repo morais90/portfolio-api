@@ -7,7 +7,7 @@ from .serializers import UserSerializer
 from .filters import UserFilter
 
 
-class UserViewSet(viewsets.ViewSet):
+class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     filter_class = UserFilter
@@ -15,5 +15,5 @@ class UserViewSet(viewsets.ViewSet):
 
     def get_permissions(self):
         if self.action in ('create',):
-            self.permission_classes = (AllowAny,)
-            return super().get_permissions()
+            return AllowAny()
+        return super().get_permissions()

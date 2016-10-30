@@ -3,3 +3,4 @@ Pillow
 psycopg2
 djangorestframework
 django-filter
+django-guardian

@@ -9,6 +9,8 @@ __all__ = ['User', 'Group']
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
     is_active = models.BooleanField(default=True)
 
     USERNAME_FIELD = 'email'

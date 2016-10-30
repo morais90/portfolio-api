@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'bellacia.authentication',
     'bellacia.users',
     'bellacia.essay',
     'bellacia.hooker'
@@ -100,6 +99,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',
     ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+    ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
@@ -108,5 +110,4 @@ REST_FRAMEWORK = {
         'rest_framework.filters.OrderingFilter'
     ),
     'PAGE_SIZE': 50,
-    'ORDERING_PARAM': 'order_by',
 }

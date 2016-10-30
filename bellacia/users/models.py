@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+from django.urls import reverse
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, Group
+
 from .managers import UserManager
 
 
@@ -18,10 +20,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     def get_full_name(self):
-        return self.email
+        return '{} {}'.format(self.first_name, self.last_name).strip()
 
     def get_short_name(self):
-        return self.email
+        return '{}'.format(self.first_name)
+
+    def get_absolute_url(self):
+        return reverse('user-detail', kwargs={'pk': self.id})
 
     def delete(self):
         self.is_active = False

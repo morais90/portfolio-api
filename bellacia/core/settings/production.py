@@ -33,7 +33,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'bellacia.users',
     'bellacia.essay',
-    'bellacia.hooker'
+    'bellacia.hooker',
+    'guardian'
 ]
 
 MIDDLEWARE = [
@@ -58,6 +59,11 @@ DATABASES = {
         'PASSWORD': 'bellacia',
     }
 }
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'guardian.backends.ObjectPermissionBackend'
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators

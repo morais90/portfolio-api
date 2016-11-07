@@ -15,16 +15,15 @@ class Hooker(models.Model):
 
 
 class Contact(models.Model):
-    EMAIL = 'EM'
-    PHONE = 'PH'
-    WHATSAPP = 'WH'
+    EMAIL = 'email'
+    PHONE = 'phone'
+    WHATSAPP = 'whatsapp'
 
     CONTACT_CHOICES = (
-        (EMAIL, 'E-mail'),
-        (PHONE, 'Phone'),
-        (WHATSAPP, 'WhatsApp')
+        ('email', 'E-mail'),
+        ('phone', 'Phone'),
+        ('whatsapp', 'WhatsApp')
     )
 
-    kind = models.CharField(max_length=2, choices=CONTACT_CHOICES)
-    number = models.CharField(max_length=11, null=True)
-    email = models.EmailField(null=True)
+    kind = models.CharField(max_length=6, choices=CONTACT_CHOICES)
+    contact = models.CharField(max_length=254)

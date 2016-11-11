@@ -2,14 +2,14 @@
 from django import http
 
 
-class CorsMiddleware:
-    def process_request(self, request):
+def cors_middleware(get_response):
+    def middleware(request):
         if request.method == 'OPTIONS':
             return http.HttpResponse()
-        return None
 
-    def process_response(self, request, response):
+        response = get_response(request)
         response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Accept, Authorization'
         response['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
         return response
+    return middleware

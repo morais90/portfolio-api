@@ -9,4 +9,4 @@ DATABASES = {
     }
 }
 
-MIDDLEWARE_CLASSES.append('cargobr_api.extra.middlewares.CorsMiddleware');  # noqa
+MIDDLEWARE.append('bellacia.core.middlewares.cors_middleware')  # noqa

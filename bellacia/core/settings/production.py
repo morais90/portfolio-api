@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'bellacia.users',
     'bellacia.essay',
     'bellacia.hooker',
+    'bellacia.authentications',
     'guardian'
 ]
 
@@ -106,7 +107,7 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.JSONParser',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',
+        'bellacia.core.authentications.BearerAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
@@ -116,4 +117,14 @@ REST_FRAMEWORK = {
         'rest_framework.filters.OrderingFilter'
     ),
     'PAGE_SIZE': 50,
+}
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://redis:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
 }

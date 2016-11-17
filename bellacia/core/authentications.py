@@ -23,7 +23,7 @@ class BearerAuthentication(BaseAuthentication):
         return self.authenticate_credentials(auth[1])
 
     def authenticate_credentials(self, key):
-        user = cache.get(key)
+        user = cache.get(key.decode())
 
         if not user:
             return None

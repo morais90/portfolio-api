@@ -21,14 +21,14 @@ class LoginView(APIView):
             }
         }
 
-        return Response(data, status=status.HTTP_202_ACCEPT, content_type='application/json')
+        return Response(data, status=status.HTTP_202_ACCEPTED, content_type='application/json')
 
 
 class LogoutView(APIView):
     def post(self, request):
         cache.delete(request.auth)
 
-        return Response(status=status.HTTP_202_ACCEPT, content_type='application/json')
+        return Response(status=status.HTTP_202_ACCEPTED, content_type='application/json')
 
 
 class RefreshView(APIView):
@@ -40,4 +40,4 @@ class RefreshView(APIView):
             'expires_in': cache.ttl(token)
         }
 
-        return Response(data, status=status.HTTP_202_ACCEPT, content_type='application/json')
+        return Response(data, status=status.HTTP_202_ACCEPTED, content_type='application/json')

@@ -21,9 +21,20 @@ class UserViewSet(viewsets.ModelViewSet):
             return (AllowAny(), )
         return super().get_permissions()
 
+    @detail_route(methods=['POST'])
+    def undelete(self, request, pk=None):
+        user = self.get_object()
+
+        if user.is_active:
+            return Response(status=status.HTTP_400_BAD_REQUEST, content_type='application/json')
+
+        user.is_active = True
+        user.save()
+        return Response(status=status.HTTP_204_NO_CONTENT, content_type='application/json')
+
     @detail_route(methods=['GET'])
-    def groups(self):
-        user = self.get_objects()
+    def groups(self, request, pk=None):
+        user = self.get_object()
 
         self.filter_class = GroupFilter
         queryset = self.filter_queryset(user.groups.all())
@@ -43,8 +54,8 @@ class GroupViewSet(viewsets.ModelViewSet):
     ordering_fields = ('id', 'name')
 
     @detail_route(methods=['GET'])
-    def permissions(self):
-        group = self.get_objects()
+    def permissions(self, request, pk=None):
+        group = self.get_object()
 
         self.filter_class = PermissionFilter
         queryset = self.filter_queryset(group.permissions.all())

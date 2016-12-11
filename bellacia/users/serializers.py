@@ -18,12 +18,6 @@ class UserSerializer(serializers.ModelSerializer):
             'is_active': {
                 'read_only': True
             },
-            'first_name': {
-                'write_only': True
-            },
-            'last_name': {
-                'write_only': True
-            },
             'password': {
                 'write_only': True
             },

@@ -6,8 +6,13 @@ class Service(models.Model):
     name = models.CharField(max_length=50)
 
 
+def hooker_picture_directory(instance, filename):
+    return 'hooker/{}/pictures/{}'.format(instance.id, filename)
+
+
 class Hooker(models.Model):
     name = models.CharField(max_length=50)
+    picture = models.ImageField(upload_to=hooker_picture_directory)
     age = models.IntegerField()
     height = models.FloatField()
     weight = models.FloatField()
@@ -27,3 +32,4 @@ class Contact(models.Model):
 
     kind = models.CharField(max_length=6, choices=CONTACT_CHOICES)
     contact = models.CharField(max_length=254)
+    hooker = models.ForeignKey(Hooker)

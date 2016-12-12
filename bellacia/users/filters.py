@@ -7,10 +7,10 @@ from .models import User, Group, Permission
 
 
 class UserFilter(FilterSet):
-    name = django_filters.MethodFilter()
+    name = django_filters.CharFilter(method='filter_name')
     email = django_filters.CharFilter(name='email', lookup_expr='icontains')
 
-    def filter_name(self, queryset, value):
+    def filter_name(self, queryset, name, value):
         return queryset.filter(
             Q(first_name__icontains=value) | Q(last_name__icontains=value)
         )

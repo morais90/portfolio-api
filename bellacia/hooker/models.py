@@ -12,11 +12,16 @@ def hooker_picture_directory(instance, filename):
 
 class Hooker(models.Model):
     name = models.CharField(max_length=50)
-    picture = models.ImageField(upload_to=hooker_picture_directory)
+    picture = models.ImageField(upload_to=hooker_picture_directory, null=True)
     age = models.IntegerField()
     height = models.FloatField()
     weight = models.FloatField()
     services = models.ManyToManyField(Service)
+    is_active = models.BooleanField(default=True)
+
+    def delete(self):
+        self.is_active = False
+        self.save()
 
 
 class Contact(models.Model):

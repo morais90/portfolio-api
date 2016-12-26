@@ -18,8 +18,8 @@ class HookerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Hooker
-        fields = ('id', 'name', 'age', 'weight', 'height', 'services')
-        read_only_fields = ('id', 'services')
+        fields = ('id', 'name', 'age', 'weight', 'height', 'services', 'picture', 'is_active')
+        read_only_fields = ('id', 'services', 'is_active')
 
 
 class ContactSerializer(serializers.ModelSerializer):

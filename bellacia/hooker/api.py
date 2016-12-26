@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from rest_framework import status
 from rest_framework.decorators import detail_route
 from rest_framework.response import Response
+from rest_framework.parsers import MultiPartParser
 
 from .models import Hooker, Service, Contact
 from .serializers import HookerSerializer, ServiceSerializer, ContactSerializer
@@ -35,6 +36,23 @@ class HookerViewSet(viewsets.ModelViewSet):
                 return self.paginated_response(serializer.data)
 
             return Response(serializer.data, status=status.HTTP_200_OK, content_type='application/json')
+
+    @detail_route(methods=['POST', 'DELETE'], parser_classes=[MultiPartParser])
+    def picture(self, request, pk=None):
+        hooker = self.get_object()
+
+        if request.method == 'POST':
+            serializer = HookerSerializer(data=request.data, partial=True)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+
+            return Response(serializer.data, status=status.HTTP_202_ACCEPTED, content_type='application/json')
+
+        elif request.method == 'GET':
+            if hooker.picture:
+                hooker.picture.delete()
+
+            return Response(status=status.HTTP_204_NO_CONTENT, content_type='application/json')
 
 
 class ServiceViewSet(viewsets.ModelViewSet):

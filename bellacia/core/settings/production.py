@@ -31,10 +31,10 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'bellacia.users',
+    'bellacia.user',
     'bellacia.essay',
-    'bellacia.hooker',
-    'bellacia.authentications',
+    'bellacia.model',
+    'bellacia.authentication',
     'guardian'
 ]
 
@@ -84,7 +84,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'user.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/

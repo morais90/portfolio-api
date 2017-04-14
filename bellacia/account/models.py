@@ -3,20 +3,20 @@ from django.db import models
 
 
 class Subscription(models.Model):
-    name = models.CharField(max_length=50)
-    interval = models.DurationField()
-    cost = models.DecimalField(decimal_places=2)
+    name = models.CharField('Nome da assinatura', max_length=50)
+    interval = models.DurationField('Validade')
+    cost = models.DecimalField('Custo', decimal_places=2)
 
 
 class Subscribe(models.Model):
-    customer = models.ForeignKey('customer.Customer')
-    payment_date = models.DatetimeField()
-    expiration_date = models.DatetimeField()
+    user = models.ForeignKey('user.User')
+    payment_date = models.DatetimeField('Data de pagamento')
+    expiration_date = models.DatetimeField('Data de finalização')
     Subscription = models.ForeignKey(Subscription)
 
 
 class SectionSubscribe(models.Model):
-    customer = models.ForeignKey('customer.Customer')
+    customer = models.ForeignKey('user.User')
     section = models.ForeignKey('essay.Section')
-    payment_date = models.DatetimeField()
-    expiration_date = models.DatetimeField()
+    payment_date = models.DatetimeField('Data de pagamento')
+    expiration_date = models.DatetimeField('Data de finalização')

@@ -13,12 +13,10 @@ class BearerAuthentication(BaseAuthentication):
         if not auth or auth[0].lower() != b'bearer':
             return None
 
-        if len(auth) == 1:
-            msg = 'Invalid bearer header. No credentials provided.'
-            raise exceptions.AuthenticationFailed(msg)
+        if len(auth) == 1 or len(auth) > 2:
+            raise exceptions.AuthenticationFailed('invalid_header')
         elif len(auth) > 2:
-            msg = 'Invalid bearer header. Credentials string should not contain spaces.'
-            raise exceptions.AuthenticationFailed(msg)
+            raise exceptions.AuthenticationFailed('invalid_header')
 
         return self.authenticate_credentials(auth[1])
 

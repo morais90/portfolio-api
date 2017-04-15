@@ -55,6 +55,7 @@ WSGI_APPLICATION = 'bellacia.core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': 'postgres',
         'NAME': 'bellacia',
         'USER': 'bellacia',
         'PASSWORD': 'bellacia',
@@ -62,7 +63,7 @@ DATABASES = {
 }
 
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
+    'bellacia.core.auth_backends.UserBackend',
     'guardian.backends.ObjectPermissionBackend'
 )
 
@@ -116,6 +117,7 @@ REST_FRAMEWORK = {
         'rest_framework.filters.DjangoFilterBackend',
         'rest_framework.filters.OrderingFilter'
     ),
+    'EXCEPTION_HANDLER': 'bellacia.core.handlers.error_handler',
     'PAGE_SIZE': 50,
 }
 

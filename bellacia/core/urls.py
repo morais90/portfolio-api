@@ -3,7 +3,7 @@ from django.conf.urls import url, include
 
 
 urlpatterns = [
-    url(r'^auth/', include('bellacia.authentication.urls')),
-    url(r'^users/', include('bellacia.user.urls')),
-    url(r'^hookers/', include('bellacia.model.urls'))
+    url(r'^v1/auth/', include('bellacia.authentication.urls')),
+    url(r'^v1/users/', include('bellacia.user.urls')),
+    url(r'^v1/models/', include('bellacia.model.urls'))
 ]

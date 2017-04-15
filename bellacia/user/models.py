@@ -21,6 +21,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_absolute_url(self):
         return reverse('user-detail', kwargs={'pk': self.id})
 
+    def __repr__(self):
+        return '<id={}, email={}>'.format(self.id, self.email)
+
     def delete(self):
         self.is_active = False
         self.save()

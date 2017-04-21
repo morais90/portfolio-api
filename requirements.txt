@@ -5,3 +5,4 @@ djangorestframework==3.6.2
 django-filter==1.0.1
 django-guardian==1.4.6
 django-redis==4.6.0
+coverage==4.3.4

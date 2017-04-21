@@ -9,5 +9,6 @@ pipelines:
   default:
     - step:
         script:
-          - pip install -r requirements.txt
-          - make test
+          - pip3 install -r requirements.txt
+          - coverage run --source='./bellacia/' manage.py test --failfast --setting=bellacia.core.settings.test -v2 tests/
+          - coverage report

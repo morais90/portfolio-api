@@ -12,3 +12,13 @@ pipelines:
           - pip3 install -r requirements.txt
           - coverage run --source='./bellacia/' manage.py test --failfast --setting=bellacia.core.settings.test -v2 tests/
           - coverage report
+      services: 
+        - postgres
+definitions: 
+  services: 
+    postgres: 
+      image: postgres 
+      environment: 
+        POSTGRES_DB: bellacia 
+        POSTGRES_USER: bellacia 
+        POSTGRES_PASSWORD: bellacia

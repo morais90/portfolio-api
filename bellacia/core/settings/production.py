@@ -10,6 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 import os
+import environ
+
+env = environ.Env()
+env.read_env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -22,9 +26,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 SECRET_KEY = 'o3sqtxwc^_)5sq@&8c2lxnm=02znbcw3xebfcv0r(nxpob@3nf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = env.bool('DEBUG', default=True)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 
 # Application definition
 
@@ -53,13 +57,7 @@ WSGI_APPLICATION = 'bellacia.core.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': 'postgres',
-        'NAME': 'bellacia',
-        'USER': 'bellacia',
-        'PASSWORD': 'bellacia',
-    }
+    'default': env.db(default='pgsql://bellacia:bellacia@postgres/bellacia')
 }
 
 AUTHENTICATION_BACKENDS = (
@@ -122,11 +120,5 @@ REST_FRAMEWORK = {
 }
 
 CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://redis:6379/1",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    }
+    'default': env.cache(default='rediscache://redis:6379/1?client_class=django_redis.client.DefaultClient')
 }

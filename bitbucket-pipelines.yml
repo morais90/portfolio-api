@@ -1,0 +1,24 @@
+# This is a sample build configuration for Python.
+# Check our guides at https://confluence.atlassian.com/x/x4UWN for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: python:3.5.1
+
+pipelines:
+  default:
+    - step:
+        script:
+          - pip3 install -r requirements.txt
+          - coverage run --source='./bellacia/' manage.py test --failfast --setting=bellacia.core.settings.test -v2 tests/
+          - coverage report
+      services: 
+        - postgres
+definitions: 
+  services: 
+    postgres: 
+      image: postgres 
+      environment: 
+        POSTGRES_DB: bellacia 
+        POSTGRES_USER: bellacia 
+        POSTGRES_PASSWORD: bellacia

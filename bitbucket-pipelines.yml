@@ -12,9 +12,9 @@ pipelines:
           - pip3 install -r requirements.txt
           - coverage run --source='./bellacia/' manage.py test --failfast --setting=bellacia.core.settings.test -v2 tests/
           - coverage report
-      services:
-        - postgres
-        - redis
+        services:
+          - postgres
+          - redis
 definitions:
   services:
     postgres:

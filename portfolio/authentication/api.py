@@ -7,7 +7,7 @@ from rest_framework.authentication import BasicAuthentication
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
 
-from bellacia.core.authentications import BearerAuthentication
+from portfolio.core.authentications import BearerAuthentication
 
 
 @api_view(['GET', 'POST', 'DELETE'])

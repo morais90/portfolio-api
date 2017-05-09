@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from unittest.mock import patch
-from bellacia.core.tests import ExtendedTestCase
-from bellacia.user.models import User
+from portfolio.core.tests import ExtendedTestCase
+from portfolio.user.models import User
 
 
 class TestLogout(ExtendedTestCase):

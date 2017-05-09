@@ -9,4 +9,4 @@ DATABASES = {
     }
 }
 
-MIDDLEWARE.append('bellacia.core.middlewares.cors_middleware')  # noqa
+MIDDLEWARE.append('portfolio.core.middlewares.cors_middleware')  # noqa

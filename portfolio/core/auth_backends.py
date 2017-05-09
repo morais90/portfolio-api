@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from bellacia.user.models import User
+from portfolio.user.models import User
 
 
 class UserBackend:

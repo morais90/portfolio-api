@@ -1,8 +1,8 @@
 version: '2'
 services:
-  bellacia-api:
+  portfolio-api:
     build: .
-    image: bellacia-api
+    image: portfolio-api
     expose:
       - "8000"
     ports:
@@ -20,6 +20,6 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=bellacia
-      - POSTGRES_PASSWORD=bellacia
-      - POSTGRES_DB=bellacia
+      - POSTGRES_USER=portfolio
+      - POSTGRES_PASSWORD=portfolio
+      - POSTGRES_DB=portfolio
